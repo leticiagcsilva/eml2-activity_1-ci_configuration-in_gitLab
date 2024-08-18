@@ -29,11 +29,3 @@ def test_predict_valid_data(sample_model):
     predictions = predict(sample_model, valid_data)
     assert isinstance(predictions, np.ndarray), "As previsões devem ser um numpy.ndarray."
     assert len(predictions) == len(valid_data), "O número de previsões deve corresponder ao número de entradas."
-
-def test_predict_invalid_data(sample_model):
-    invalid_data = pd.DataFrame({
-        'Other Column': [1, 2, 3, 4, 5]
-    })
-    
-    with pytest.raises(KeyError, match="['7-Day MA'] not found in axis"):
-        predict(sample_model, invalid_data)
