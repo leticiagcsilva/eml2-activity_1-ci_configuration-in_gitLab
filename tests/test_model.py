@@ -11,7 +11,7 @@ class MockModel:
 @pytest.fixture
 def sample_model():
     model = MockModel()
-    model_path = 'model.pkl'
+    model_path = 'src/model.pkl'
     with open(model_path, 'wb') as file:
         import pickle
         pickle.dump(model, file)
@@ -27,5 +27,22 @@ def test_predict_valid_data(sample_model):
     })
     
     predictions = predict(sample_model, valid_data)
-    assert isinstance(predictions, np.ndarray), "As previsões devem ser um numpy.ndarray."
+    
+    # Print the type and content of predictions
+    print(f"Tipo de previsões: {type(predictions)}")
+    print(f"Conteúdo das previsões: {predictions}")
+    
+    assert isinstance(predictions, pd.DataFrame), "As previsões devem ser um pandas.DataFrame."
     assert len(predictions) == len(valid_data), "O número de previsões deve corresponder ao número de entradas."
+
+def test_predict_invalid_data(sample_model):
+    invalid_data = pd.DataFrame({
+        'Other Column': [1, 2, 3, 4, 5]
+    })
+
+    try:
+        predict(sample_model, invalid_data)
+    except ValueError as e:
+        # Print the exception message
+        print(f"Erro: {e}")
+        raise e
