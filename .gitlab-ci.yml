@@ -1,0 +1,27 @@
+stages:
+  - build
+  - test
+
+variables:
+  DOCKER_DRIVER: overlay2
+
+services:
+  - docker:dind
+
+before_script:
+  - docker info
+  - docker build -t streamlit-app .
+
+build:
+  stage: build
+  script:
+    - docker build -t streamlit-app .
+
+test:
+  stage: test
+  script:
+    - docker run -d --name app -p 8501:8501 streamlit-app
+    - sleep 10 
+    - curl -I http://localhost:8501  
+  only:
+    - main

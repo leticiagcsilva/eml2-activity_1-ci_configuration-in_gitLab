@@ -1,2 +1,9 @@
-# eml2-activity_1-ci_configuration-in_gitLab
- 
+### ITI UFSCar - MBA Machine Learning In Production
+# Engenharia de Machine Learning Módulo 2 - Atividade 1
+
+## 
+
+
+### Estrutura do repositório
+
+### Esteira de CI
