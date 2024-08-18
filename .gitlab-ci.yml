@@ -21,8 +21,8 @@ test:
   stage: test
   script:
     - docker run -d --name app -p 8501:8501 streamlit-app
-    - sleep 10 
-    - curl -I http://localhost:8501  
+    - sleep 10
+    - curl -I http://localhost:8501
   only:
     - main
 
