@@ -25,3 +25,4 @@ test:
     - curl -I http://localhost:8501  
   only:
     - main
+
